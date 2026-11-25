@@ -63,11 +63,16 @@ Mỗi thành viên đồng thời tạo một báo cáo riêng trong `report/tea
 
 ### Đóng góp cụ thể
 
-- *(Cập nhật sau khi hoàn thành từng checkpoint)*
+- **Chặng 1 (A–B · Người kiểm số):**
+  - Đối chiếu độc lập từ hai file CSV gốc (`src/logix_runs.csv`, `src/logix_requests.csv`) với kết quả chạy `src/lab13.py` của Trung: xác nhận 3 phép thử A1 đạt (`1,20 · 1,25 · 1,25`), khớp toàn bộ số liệu A2 (`4.373.585 đ`, `978` việc thành công, CPS `4.472 đ` `[simulated]`, gấp `16,3×` hoá đơn `274,7 đ`), A3, A4 (`4.599 đ` ở 45.000 yc/tháng và `5.784 đ` ở nửa khối lượng `[simulated]`), B1–B4 (lệch < 0,01% so với số tham chiếu).
+  - Kiểm tra tính đối xứng bảng độ nhạy B1 (`+5,6% / −2,8%`; `+40,7% / −20,3%`; `+51,8% / −25,9%`), tính cộng tuyến tính B2 (`+46,3%`), chênh lệch tối ưu CPS vs cả hệ thống ở B3 (`1 lần` vs `2 lần`), và cả hai kịch bản làm lại (`9 phút` và `15,3 phút`) kèm ngưỡng hoà vốn ở B4.
+  - Điền hoàn chỉnh `report/team/bang_chi_phi.md` (A1–A4, B1–B4), đảm bảo đầy đủ nhãn `simulated`, mỗi câu trả lời ≤ 3 dòng có số, không dùng từ cấm.
+- **Chặng 2 (C–E):** *(Cập nhật sau khi hoàn thành CP3–CP5)*
 
 ### Bằng chứng
 
-- *(Ghi commit hash, file và bảng đã hoàn thành)*
+- `report/team/bang_chi_phi.md` (hoàn chỉnh A1, A2, A3, A4, B1, B2, B3, B4)
+- *(Bổ sung commit hash và các file chặng 2 sau khi push)*
 
 ## NguyenDuyManh-2A202603806
 
