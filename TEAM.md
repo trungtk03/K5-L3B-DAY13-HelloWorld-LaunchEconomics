@@ -67,12 +67,18 @@ Mỗi thành viên đồng thời tạo một báo cáo riêng trong `report/tea
   - Đối chiếu độc lập từ hai file CSV gốc (`src/logix_runs.csv`, `src/logix_requests.csv`) với kết quả chạy `src/lab13.py` của Trung: xác nhận 3 phép thử A1 đạt (`1,20 · 1,25 · 1,25`), khớp toàn bộ số liệu A2 (`4.373.585 đ`, `978` việc thành công, CPS `4.472 đ` `[simulated]`, gấp `16,3×` hoá đơn `274,7 đ`), A3, A4 (`4.599 đ` ở 45.000 yc/tháng và `5.784 đ` ở nửa khối lượng `[simulated]`), B1–B4 (lệch < 0,01% so với số tham chiếu).
   - Kiểm tra tính đối xứng bảng độ nhạy B1 (`+5,6% / −2,8%`; `+40,7% / −20,3%`; `+51,8% / −25,9%`), tính cộng tuyến tính B2 (`+46,3%`), chênh lệch tối ưu CPS vs cả hệ thống ở B3 (`1 lần` vs `2 lần`), và cả hai kịch bản làm lại (`9 phút` và `15,3 phút`) kèm ngưỡng hoà vốn ở B4.
   - Điền hoàn chỉnh `report/team/bang_chi_phi.md` (A1–A4, B1–B4), đảm bảo đầy đủ nhãn `simulated`, mỗi câu trả lời ≤ 3 dòng có số, không dùng từ cấm.
-- **Chặng 2 (C–E):** *(Cập nhật sau khi hoàn thành CP3–CP5)*
+- **Chặng 2 (D–E · Người viết code chặng 2):**
+  - Viết hoàn chỉnh `TODO CP4` và `E1` trong `src/lab13.py`: tính cỡ mẫu 5 câu D1 (`1.251`, `DE=2,48 / 3.103 / 84 người`, trần `1.000`, trần `300`, MDE +6 điểm `859` mẫu hiệu dụng với `m >= 299` đơn/người, `DE=6,96`, cần ≥ 8 ngày gom mẫu ở bước 20+20 người), đối chiếu power `0,64` bằng `statsmodels`, tính tỉ lệ `mo_lai_trong_7_ngay` (`4,25%` toàn mẫu; `3,97%` phạm vi pilot), tính thử 3 chỉ số E1 và viết hàm kiểm tra hợp lệ `report/team/pilot_plan.yaml`.
+  - Hoàn thiện mục D1 và điền các trường `n_per_arm: 859`, `design_effect: 6.96`, `clusters_per_arm: 20` (xoá hết dấu `?`) trong `report/team/pilot_plan.yaml`; đồng bộ chi tiết bước rollout 8 ngày và điều kiện bật luật dừng theo slide D1/D3.
+  - Điền bảng đặc tả chỉ số E1 (3 chỉ số tính thử: `82,83%`, `27,12%`, `4,25%` và 2 chỉ số dùng/an toàn tự đề xuất khớp danh sách event) trong `report/team/chi_so.md`.
 
 ### Bằng chứng
 
 - `report/team/bang_chi_phi.md` (hoàn chỉnh A1, A2, A3, A4, B1, B2, B3, B4)
-- *(Bổ sung commit hash và các file chặng 2 sau khi push)*
+- `src/lab13.py` (hoàn thiện `co_mau`, `in_nhiem_vu_d`, `in_nhiem_vu_e1`, `kiem_tra_pilot_plan`)
+- `report/team/pilot_plan.yaml` (điền đủ D1, chốt `n_per_arm=859`, `design_effect=6.96`, `clusters_per_arm=20`, không còn `?`, hợp lệ `yaml.safe_load`)
+- `report/team/chi_so.md` (hoàn thiện bảng E1: 3 chỉ số tính thử + 2 chỉ số tự đề xuất)
+- *(Bổ sung commit hash cuối và `report/team/phieu_cham.md` sau duyệt chéo Gate 2a)*
 
 ## NguyenDuyManh-2A202603806
 

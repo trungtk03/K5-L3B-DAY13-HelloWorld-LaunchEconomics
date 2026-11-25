@@ -2,13 +2,13 @@
 # Điền mọi chỗ có dấu hỏi. Khi nộp, ngoài các dòng chú thích không còn dấu hỏi nào.
 # Kiểm tra đọc được: python -c "import yaml; yaml.safe_load(open('../report/team/pilot_plan.yaml'))"
 #
-# D1 · Cỡ mẫu (baseline 0,70; mục tiêu +5 điểm; alpha 0,05; power 0,8; ICC 0,02)
-#   (TODO CP4: Đỗ Triệu Đức Phương điền sau khi chạy tính cỡ mẫu trong src/lab13.py)
-#   a) Chia theo yêu cầu:
-#   b) Theo nhân viên, m = 75:
-#   c) 20 nhân viên mỗi nhóm:
-#   d) 6 depot mỗi nhóm:
-#   e) Mức chênh 6 điểm (859 mỗi nhóm), 20 nhân viên mỗi nhóm:
+# D1 · Cỡ mẫu (baseline 0,70; mục tiêu +5 điểm; alpha 0,05; power 0,8; ICC 0,02) — tính từ src/lab13.py (Đỗ Triệu Đức Phương)
+#   a) Chia theo yêu cầu: 1.251 yêu cầu/nhóm (nhưng cùng 1 nhân viên vừa dùng vừa không dùng -> tràn tác động cao, kết quả không sạch).
+#   b) Theo nhân viên, m = 75: DE = 1 + 74 × 0,02 = 2,48; cần 3.103 yêu cầu/nhóm -> 42 nhân viên/nhóm, tổng 84 > 40 -> không đủ người.
+#   c) 20 nhân viên mỗi nhóm: trần cỡ mẫu hiệu dụng c/ICC = 20 / 0,02 = 1.000 < 1.251 (m = 75 chỉ còn 605 mẫu hiệu dụng) -> không đạt +5 điểm.
+#   d) 6 depot mỗi nhóm: trần c/ICC = 6 / 0,02 = 300 < 1.251 và chỉ 6 cụm (< 20 cụm tối thiểu) -> loại.
+#   e) Mức chênh 6 điểm (859 mỗi nhóm), 20 nhân viên mỗi nhóm: cần m >= 299 yêu cầu/nhân viên (DE = 6,96, n_hiệu_dụng = 859,2 >= 859).
+#      Với 1.500 đơn/ngày / 40 người = 37,5 đơn/người/ngày, bước 20+20 người cần ít nhất 8 ngày gom đủ 299 đơn/người (7 ngày chỉ được ~263), cộng 7 ngày cửa sổ không mở lại cho từng đơn.
 #
 # D2 · Năm câu kiểm tra "tách được tác động" với cách chia đã chọn (theo nhân viên, 20 + 20):
 #   1. Đối chứng chạy cùng thời gian: Có, 20 nhân viên đối chứng và 20 nhân viên dùng trợ lý chạy cùng tuần trên cả 12 depot.
@@ -33,23 +33,23 @@ pilot:
     unit: "staff"                 # chia theo nhân viên (20 can thiệp + 20 đối chứng, phân tầng theo depot)
     control_share: 0.5
     randomized: true
-  rollout: [0.10, 0.25, 0.50]     # 4 -> 10 -> 20 nhân viên, mỗi bước một tuần; chỉ đo chỉ số chính từ bước 0.50
+  rollout: [0.10, 0.25, 0.50]     # 4 -> 10 -> 20 nhân viên; bước 0.50 chạy tối thiểu 8 ngày để gom đủ >= 299 đơn/người (+7 ngày theo dõi không mở lại); chỉ đo chỉ số chính từ bước 0.50
   primary_metric:
     name: dong_trong_24h_khong_mo_lai_7_ngay
     baseline: 0.70
-    mde: 0.06                     # đánh đổi đã chấp nhận (từ 0,05 lên 0,06 để đủ mẫu với 20 nhân viên/nhóm)
+    mde: 0.06                     # đánh đổi đã chấp nhận (từ 0,05 lên 0,06 để đủ mẫu với 20 nhân viên/nhóm; power còn 0,64 nếu tác động thật là +5 điểm)
     alpha: 0.05
     power: 0.80
-    n_per_arm: "?"                # TODO CP4 (Phương xác nhận từ src/lab13.py)
-    design_effect: "?"            # TODO CP4 (Phương xác nhận từ src/lab13.py)
-    clusters_per_arm: "?"         # TODO CP4 (Phương xác nhận từ src/lab13.py)
+    n_per_arm: 859                # cỡ mẫu hiệu dụng mỗi nhóm (tính từ src/lab13.py: co_mau(0.70, 0.76) = 859; m >= 299 đơn/người)
+    design_effect: 6.96           # DE = 1 + (299 - 1) * 0.02 = 6.96
+    clusters_per_arm: 20          # 20 nhân viên mỗi nhóm (đạt tối thiểu 20 cụm)
   identifiability:
     concurrent_control: "Có, 20 nhân viên đối chứng và 20 nhân viên can thiệp chạy đồng thời cùng các tuần, phân tầng theo 12 depot"
     spillover_risk: "Trung bình (nhân viên cùng depot có thể trao đổi); giảm bằng khoá quyền truy cập theo staff_id, tách hàng đợi và theo dõi log agent_suggestion_shown theo staff_id"
     predeclared: "Có, chốt trước chỉ số chính, MDE 0,06, 3 luật dừng, kế hoạch rollback và ngày quyết định trước ngày bắt đầu pilot"
   stop_rules:
-    - "NẾU tỉ lệ mở lại trong 7 ngày của nhóm trợ lý cao hơn nhóm đối chứng >= 2 điểm phần trăm hoặc vượt trần 6%, hoặc phát sinh >= 1 ca hoàn trùng TRONG 3 ngày liên tiếp THÌ Giám đốc vận hành tắt cờ trợ lý trong 30 phút và Kỹ sư trưởng agent rà nguyên nhân gốc KHÔNG THÌ không được chuyển sang bước rollout tiếp theo"
-    - "NẾU chi phí mỗi việc thành công (tính bằng giờ đo thật) vượt 8.000 đ TRONG 2 tuần liên tiếp THÌ PM trợ lý hoàn phí thu hẹp phạm vi về chỉ noi_dia và giới hạn tối đa 2 lần chạy KHÔNG THÌ không được mở rộng sang hang_nang hoặc tăng tỉ lệ rollout"
+    - "NẾU tỉ lệ mở lại trong 7 ngày vượt trần 6% hoặc phát sinh >= 1 ca hoàn trùng (áp dụng ngay từ bước 4 người), hoặc cao hơn nhóm đối chứng >= 2 điểm phần trăm (áp dụng từ bước 10 người trở lên để tránh báo giả ở mẫu 4 người) TRONG 3 ngày liên tiếp THÌ Giám đốc vận hành tắt cờ trợ lý trong 30 phút và Kỹ sư trưởng agent rà nguyên nhân gốc KHÔNG THÌ không được chuyển sang bước rollout tiếp theo"
+    - "NẾU chi phí biến đổi mỗi việc thành công (token + tool + giờ nhân viên đo thật, chưa cộng 40 triệu chi phí cố định) vượt 8.000 đ TRONG 2 tuần liên tiếp THÌ PM trợ lý hoàn phí thu hẹp phạm vi về chỉ noi_dia và giới hạn tối đa 2 lần chạy KHÔNG THÌ không được mở rộng sang hang_nang hoặc tăng tỉ lệ rollout"
     - "NẾU tỉ lệ bỏ qua gợi ý (sua + bo) vượt 40% hoặc tỉ lệ mở trợ lý ở nhóm can thiệp dưới 50% TRONG 1 tuần liên tiếp THÌ Trưởng nhóm CSKH phỏng vấn ít nhất 5 nhân viên trong 3 ngày để tìm chỗ vướng trong quy trình và giao diện KHÔNG THÌ không được chuyển sang bước rollout tiếp theo"
   interim_looks: "chỉ kiểm tra chỉ số an toàn (không dừng sớm vì thắng chỉ số chính trước ngày quyết định)"
   rollback: "Giám đốc vận hành tắt cờ tính năng (feature flag), hiệu lực tối đa 30 phút; khách hàng quay về luồng nhân viên CSKH tự xử lý"

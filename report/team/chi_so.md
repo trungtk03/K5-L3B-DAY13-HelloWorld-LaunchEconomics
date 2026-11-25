@@ -4,11 +4,11 @@
 
 | Loại | Chỉ số | Công thức | Tính thử trên 1.200 yêu cầu |
 | --- | --- | --- | --- |
-| Chính (kết quả) | % yêu cầu đóng trong 24 giờ và không mở lại trong 7 ngày | `dong_trong_24h` bằng 1 và `mo_lai_trong_7_ngay` bằng 0, chia tổng số yêu cầu | ... |
-| Dùng | Tỉ lệ bỏ qua gợi ý | `quyet_dinh_xem_lai` là `sua` hoặc `bo`, chia số yêu cầu được xem lại | ... |
-| An toàn | Tỉ lệ lỗi lọt đến khách | `mo_lai_trong_7_ngay` bằng 1, chia tổng số yêu cầu | ... |
-| Dùng | Nhóm tự đề xuất: ... | ... | Không cần tính |
-| An toàn | Nhóm tự đề xuất: ... | ... | Không cần tính |
+| Chính (kết quả) | % yêu cầu đóng trong 24 giờ và không mở lại trong 7 ngày | `dong_trong_24h` bằng 1 và `mo_lai_trong_7_ngay` bằng 0, chia tổng số yêu cầu | Chỉ số trong đợt chạy thử là **82,83%** (`994/1.200`) |
+| Dùng | Tỉ lệ bỏ qua gợi ý | `quyet_dinh_xem_lai` là `sua` hoặc `bo`, chia số yêu cầu được xem lại | Chỉ số trong đợt chạy thử là **27,12%** (`48/177`) |
+| An toàn | Tỉ lệ lỗi lọt đến khách | `mo_lai_trong_7_ngay` bằng 1, chia tổng số yêu cầu | Chỉ số trong đợt chạy thử là **4,25%** (`51/1.200`; trong phạm vi `noi_dia` + `hang_nang`: `3,97%`, `39/982`) |
+| Dùng | Nhóm tự đề xuất: % yêu cầu của nhóm can thiệp được mở bằng trợ lý | Số `request_id` có event `agent_suggestion_shown` chia tổng `refund_request_created` thuộc `arm == treatment` | Không cần tính |
+| An toàn | Nhóm tự đề xuất: % đơn hoàn sai tiền qua kiểm tra mẫu hằng tuần và số ca hoàn trùng | Số đơn có `lech_tien != 0` chia tổng mẫu 100 đơn/tuần từ `audit_sample_checked`, kết hợp đếm ca trùng theo `idempotency_key` và `request_id` từ `refund_ledger_write` | Không cần tính |
 
 Viết "chỉ số trong đợt chạy thử là …", không viết "trợ lý đã nâng chỉ số": đợt chạy thử không có nhóm đối chứng.
 
