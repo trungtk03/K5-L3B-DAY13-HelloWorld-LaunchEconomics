@@ -14,7 +14,7 @@
 |   1 | Nguyễn Hoàng Trung | 2A202603826 | 26ai.trungnh@vinuni.edu.vn | trungtk03 | Nhóm trưởng (chủ fork) · Người viết code (chặng 1: A–B) → Kiểm số & soát kỹ thuật (chặng 2: D–E) |
 |   2 | Đỗ Triệu Đức Phương | 2A202603843 | 26ai.phuongdtd@vinuni.edu.vn | ducphuong2005 | Người kiểm số (chặng 1: A–B) → Người viết code (chặng 2: D–E) |
 |   3 | Nguyễn Duy Mạnh | 2A202603806 | 26ai.manhnd9@vinuni.edu.vn | hnamyud | Người gắn nhãn 1 · Theo dõi điều kiện "Xong khi" (QA) |
-|   4 | Vũ Xuân Bách | 2A202603803 | bachvx.1709@gmail.com | bachvx1709 | Người gắn nhãn 2 · Người giữ hồ sơ (`ho_so_launch_v0.md`) |
+|   4 | Vũ Xuân Bách | 2A202603803 | 26ai.bachvx2@vinuni.edu.vn | bachvx1709 | Người gắn nhãn 2 · Người giữ hồ sơ (`ho_so_launch_v0.md`) |
 
 Bốn vai của lab:
 

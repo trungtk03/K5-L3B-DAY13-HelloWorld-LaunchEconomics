@@ -4,8 +4,7 @@
 
 - Họ tên: Vũ Xuân Bách
 - MSSV: 2A202603803
-- Email: bachvx.1709@gmail.com
-- GitHub: bachvx1709
+- Email: 26ai.bachvx2@vinuni.edu.vn
 - Vai trong nhóm: Người gắn nhãn 2 · Người giữ hồ sơ (`ho_so_launch_v0.md`)
 
 ## 2. Phần việc phụ trách
@@ -17,26 +16,31 @@
 
 ## 3. Đóng góp cụ thể
 
-- **Nhiệm vụ C (Người gắn nhãn 2):** Đọc độc lập 20 ca lỗi trong `docs/Ngay13_Lab13_De_bai_hoc_vien.docx` và gắn nhãn theo 5 loại Google PAIR trong 8 phút không trao đổi. Sau khi so nhãn với Nguyễn Duy Mạnh đạt đồng thuận `19/20 = 95%` (chỉ lệch Ca 8 và đã thống nhất quy tắc phân biệt), đồng thời hoàn thiện 2 dòng bảng khắc phục (Ca 3: Ngữ cảnh, Ca 4: Giới hạn hệ thống) trong `report/team/bang_loi.md`.
-- **Xuyên suốt A–E (Người giữ hồ sơ):** Tổng hợp số liệu sau từng checkpoint vào `report/team/ho_so_launch_v0.md` (từ CP1–CP3 đến bản chốt đủ 7 mục trong 1 trang cho Gate 2a), đảm bảo đúng cột trạng thái (`Giả lập` / `Xong, có bằng chứng`), mỗi mục gắn đúng 1 vai trò phụ trách và chốt đề xuất **Go có điều kiện** kèm 3 điều kiện cụ thể.
-- **Duyệt chéo Gate 2a:** Tham gia rà soát hồ sơ Nhóm 08 cùng cả nhóm và phối hợp chỉnh sửa đồng bộ `ho_so_launch_v0.md` sau phần phản biện.
+- **Nhiệm vụ C (CP3 — Người gắn nhãn 2):**
+  - Gắn nhãn độc lập 20 ca lỗi trong `docs/Ngay13_Lab13_De_bai_hoc_vien.docx` theo 5 loại Google PAIR (nguyên nhân gốc).
+  - Đối chiếu với Người gắn nhãn 1 (Nguyễn Duy Mạnh), đạt tỉ lệ đồng thuận **19/20 = 95%** (vượt ngưỡng 80%).
+  - Thống nhất nhãn **Ngầm** cho ca lệch duy nhất (Ca 8) và viết 1 câu quy tắc phân biệt.
+  - Điền 2 dòng bảng khắc phục trong `report/team/bang_loi.md`: **Ca 3 (Ngữ cảnh)** (đo bằng tỉ lệ ticket hỏi chưa nhận được tiền trên `refund_wallet_success` > 5%/tuần, phụ trách: *Quản lý sản phẩm*) và **Ca 4 (Giới hạn hệ thống)** (đo bằng event `handoff_foreign_carrier` > 10 ca/ngày, phụ trách: *Trưởng nhóm CSKH*).
+- **Xuyên suốt A–E (Người giữ hồ sơ `ho_so_launch_v0.md`):**
+  - Tổng hợp, đối chiếu số liệu từ `bang_chi_phi.md` (CP1–CP2), `bang_loi.md` (CP3), `pilot_plan.yaml` (CP4) và `chi_so.md` (CP5) vào đủ 7 mục của `report/team/ho_so_launch_v0.md` trước 17:00.
+  - Gắn đúng nhãn trạng thái (`Giả lập` cho số từ cột `_simulated`, `Xong, có bằng chứng` cho các mục còn lại) và 1 vai trò phụ trách cụ thể cho từng mục.
+  - Chốt đề xuất **Go có điều kiện** kèm 3 điều kiện cụ thể (kỹ thuật/an toàn, kinh tế/vận hành, nghiệm thu pilot), người phụ trách và ngày kiểm tra, không dùng từ "production".
 
 ## 4. Bằng chứng
 
 Commit, file, bảng hoặc con số do bạn làm.
 
-- Commits `d6c9841`, `f3248c1` trên nhánh `main` (`report/team/bang_loi.md`: cột Nhãn người 2 độc lập 20/20 ca, đồng thuận `19/20 = 95%`, 2 ca khắc phục Ca 3 và Ca 4).
-- Commits `3b50c97`, `ab31235` trên nhánh `main` (`report/team/ho_so_launch_v0.md`: hồ sơ launch v0 đủ 7 mục và đề xuất Go có điều kiện).
-- `TEAM.md` (mục đóng góp của Vũ Xuân Bách) và tham gia duyệt chéo `report/team/phieu_cham.md`.
+- `report/team/bang_loi.md` (commit `f3248c1`): cột `Nhãn người 2 (Bách)`, tỉ lệ đồng thuận `19/20 = 95%`, quy tắc Ca 8 và 2 dòng khắc phục (Ca 3, Ca 4).
+- `report/team/ho_so_launch_v0.md` (commit `3b50c97` cho CP1–CP3; commit `ab31235` hoàn thiện đủ 7 mục + đề xuất `Go có điều kiện` cho Gate 2a).
 
 ## 5. Công cụ AI đã dùng
 
 Công cụ nào, dùng vào việc gì, bạn tự kiểm tra kết quả ra sao.
 
-- Dùng trợ lý AI (ChatGPT / Gemini) để tra cứu nhanh khung phân loại 5 nhóm lỗi Google PAIR và soát chính tả, độ ngắn gọn của bảng 1 trang `ho_so_launch_v0.md`.
-- Tự kiểm tra bằng cách đọc trực tiếp từng ca lỗi trong `docs/Ngay13_Lab13_De_bai_hoc_vien.docx` để gắn nhãn độc lập theo nguyên nhân gốc trước khi so với Mạnh, đồng thời đối chiếu mọi con số đưa lên `ho_so_launch_v0.md` với `bang_chi_phi.md`, `chi_so.md` và `pilot_plan.yaml`. *(Lưu ý: Bách rà lại đúng tên công cụ AI cá nhân đã dùng trước khi nộp LMS nếu có khác biệt).*
+- Sử dụng trợ lý AI trong IDE để hỗ trợ rà soát cấu trúc tài liệu, đối chiếu tính nhất quán số liệu giữa `bang_chi_phi.md`, `bang_loi.md`, `pilot_plan.yaml`, `chi_so.md` với `ho_so_launch_v0.md`.
+- Tự kiểm tra lại toàn bộ 20 ca lỗi từ file đề bài gốc `.docx`, đối chiếu trực tiếp từng con số với bảng nguồn và đảm bảo đúng quy tắc nhãn `simulated` / không dùng từ cấm.
 
 ## 6. Tự đánh giá
 
-- **Điểm làm tốt:** Giữ đúng nguyên tắc gắn nhãn độc lập đạt đồng thuận `95%` (`19/20`), cập nhật hồ sơ `ho_so_launch_v0.md` kịp mốc 17:00 để nhóm bảo vệ Gate 2a đúng giờ.
-- **Điểm cần rút kinh nghiệm:** Cần kiểm tra kỹ hơn sự khác biệt giữa tỉ số CPS riêng (`0,37×`) và chi phí cả hệ thống (`0,49×`) cũng như mốc thời gian gom mẫu thực tế cho phạm vi `81,8%` (`≥ 10 ngày`) ngay từ lần điền đầu tiên.
+- **Điểm làm tốt:** Phối hợp nhịp nhàng với các thành viên qua Git (chủ động fetch/rebase, giải quyết conflict sạch sẽ) và nắm chắc cách phân loại lỗi theo nguyên nhân gốc.
+- **Điểm cần cải thiện:** Cần chủ động trao đổi và xác nhận lại thông tin với các thành viên ngay khi chuyển giao giữa các checkpoint để cả nhóm nắm rõ tiến độ và yêu cầu của nhau hơn.
