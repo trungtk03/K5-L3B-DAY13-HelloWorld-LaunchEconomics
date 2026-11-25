@@ -4,7 +4,11 @@ Không cần khoá API. Điền các chỗ ghi VIẾT Ở ĐÂY (đánh dấu TO
 Bản gốc chưa sửa nằm ở lab13_starter.py.
 """
 import math
+from pathlib import Path
+from statistics import NormalDist
 import pandas as pd
+from statsmodels.stats.proportion import proportion_effectsize
+from statsmodels.stats.power import NormalIndPower
 
 # Bảng giá GIẢ ĐỊNH của lab (không phải giá thật của nhà cung cấp nào)
 GIA_VAO = 26             # đồng cho 1.000 token đầu vào
@@ -214,12 +218,111 @@ def in_nhiem_vu_b(runs, reqs):
         )
 
 
+# ---------- Nhiệm vụ D1 · Cỡ mẫu cho ba cách chia (Chặng 2 · Đỗ Triệu Đức Phương) ----------
+def co_mau(p1, p2, alpha=0.05, power=0.80):
+    """Cỡ mẫu mỗi nhóm khi so hai tỉ lệ p1 và p2 (kiểm định hai phía)."""
+    za = NormalDist().inv_cdf(1 - alpha / 2)
+    zb = NormalDist().inv_cdf(power)
+    pb = (p1 + p2) / 2
+    return math.ceil(
+        (za * math.sqrt(2 * pb * (1 - pb)) + zb * math.sqrt(p1 * (1 - p1) + p2 * (1 - p2))) ** 2
+        / (p2 - p1) ** 2
+    )
+
+
+def in_nhiem_vu_d(reqs):
+    print('\n=== D1 · CỠ MẪU CHO BA CÁCH CHIA (baseline=0,70 · alpha=0,05 · power=0,80 · ICC=0,02) ===')
+    p1, alpha, power, icc = 0.70, 0.05, 0.80, 0.02
+    n_a = co_mau(p1, 0.75, alpha, power)
+    de_75 = 1 + (75 - 1) * icc
+    n_b = math.ceil(n_a * de_75)
+    nv_moi_nhom = math.ceil(n_b / 75)
+    tran_20 = 20 / icc
+    n_eff_20_75 = 20 * 75 / de_75
+    tran_6 = 6 / icc
+
+    n_6pp = co_mau(p1, 0.76, alpha, power)
+    m_e = math.ceil((n_6pp * (1 - icc)) / (20 - n_6pp * icc))
+    de_e = 1 + (m_e - 1) * icc
+    n_eff_e = 20 * m_e / de_e
+
+    # Đối chiếu bằng statsmodels (power thực tế nếu tác động thật chỉ là +5 điểm với n = 859)
+    es_5pp = proportion_effectsize(0.75, 0.70)
+    pw_at_5pp = NormalIndPower().power(effect_size=es_5pp, nobs1=n_6pp, alpha=alpha, ratio=1.0)
+    don_moi_nguoi_ngay = 1500 / 40
+    so_ngay_gom_du = math.ceil(m_e / don_moi_nguoi_ngay)
+
+    print(f"  a) Chia theo yêu cầu (+5 điểm):        {n_a:,d} yêu cầu/nhóm (tràn tác động cao trên cùng nhân viên)")
+    print(f"  b) Theo nhân viên, m = 75:             DE = {de_75:.2f}; cần {n_b:,d} YC/nhóm → {nv_moi_nhom} người/nhóm (tổng {nv_moi_nhom * 2} > 40: không đủ)")
+    print(f"  c) 20 nhân viên/nhóm (trần c/ICC):     tối đa {tran_20:,.0f} < {n_a:,d} (m=75 chỉ còn {n_eff_20_75:,.0f} mẫu hiệu dụng: không đạt +5 điểm)")
+    print(f"  d) 6 depot/nhóm (trần c/ICC):          tối đa {tran_6:,.0f} < {n_a:,d} (và chỉ 6 cụm < 20: loại)")
+    print(f"  e) Mức chênh +6 điểm ({n_6pp}/nhóm), 20 NV: m ≥ {m_e} YC/người (DE = {de_e:.2f}, n_hiệu_dụng = {n_eff_e:.1f})")
+    print(f"     → Power nếu tác động thật +5 điểm (statsmodels, n={n_6pp}): {pw_at_5pp:.2f} ({pw_at_5pp * 100:.1f}%)")
+    print(f"     → Thời gian gom mẫu bước 20+20 người ({don_moi_nguoi_ngay:.1f} đơn/người/ngày): cần ≥ {so_ngay_gom_du} ngày (7 ngày chỉ được ~{7 * don_moi_nguoi_ngay:.0f} < {m_e})")
+
+    mo_lai_all = (reqs['mo_lai_trong_7_ngay'] == 1).mean() * 100
+    so_mo_lai_all = int((reqs['mo_lai_trong_7_ngay'] == 1).sum())
+    sub_pilot = reqs[reqs['loai'].isin(['noi_dia', 'hang_nang'])]
+    mo_lai_pilot = (sub_pilot['mo_lai_trong_7_ngay'] == 1).mean() * 100
+    so_mo_lai_pilot = int((sub_pilot['mo_lai_trong_7_ngay'] == 1).sum())
+    print(
+        f"  Tỉ lệ mo_lai_trong_7_ngay hiện tại:    toàn mẫu {mo_lai_all:.2f}% ({so_mo_lai_all}/{len(reqs)}) "
+        f"| phạm vi noi_dia+hang_nang {mo_lai_pilot:.2f}% ({so_mo_lai_pilot}/{len(sub_pilot)})"
+    )
+
+
+# ---------- Nhiệm vụ E1 · Tính thử 3 chỉ số trên 1.200 yêu cầu ----------
+def in_nhiem_vu_e1(reqs):
+    print('\n=== E1 · TÍNH THỬ BA CHỈ SỐ TRÊN 1.200 YÊU CẦU (ĐỢT CHẠY THỬ, CHƯA CÓ ĐỐI CHỨNG) ===')
+    mask_chinh = (reqs['dong_trong_24h'] == 1) & (reqs['mo_lai_trong_7_ngay'] == 0)
+    so_chinh = int(mask_chinh.sum())
+    tl_chinh = mask_chinh.mean() * 100
+
+    xem = reqs[reqs['duoc_xem_lai'] == 1]
+    so_bo_qua = int(xem['quyet_dinh_xem_lai'].isin(['sua', 'bo']).sum())
+    tl_bo_qua = (so_bo_qua / len(xem)) * 100
+
+    so_an_toan = int((reqs['mo_lai_trong_7_ngay'] == 1).sum())
+    tl_an_toan = (so_an_toan / len(reqs)) * 100
+
+    print(f"  Chính (% đóng 24h & không mở lại 7 ngày): {tl_chinh:6.2f}% ({so_chinh}/{len(reqs)})")
+    print(f"  Dùng  (Tỉ lệ bỏ qua gợi ý sua + bo):      {tl_bo_qua:6.2f}% ({so_bo_qua}/{len(xem)})")
+    print(f"  An toàn (Tỉ lệ mở lại trong 7 ngày):      {tl_an_toan:6.2f}% ({so_an_toan}/{len(reqs)})")
+
+
+def kiem_tra_pilot_plan(yaml_path=None):
+    print('\n=== KIỂM TRA HỢP LỆ report/team/pilot_plan.yaml ===')
+    if yaml_path is None:
+        yaml_path = Path(__file__).resolve().parent.parent / 'report' / 'team' / 'pilot_plan.yaml'
+    try:
+        import yaml
+    except ImportError:
+        print('  [Bỏ qua] Chưa cài pyyaml trong môi trường hiện tại.')
+        return
+    with open(yaml_path, encoding='utf-8') as f:
+        raw_lines = f.readlines()
+    non_comment_q = [i + 1 for i, line in enumerate(raw_lines) if not line.lstrip().startswith('#') and '?' in line]
+    data = yaml.safe_load(''.join(raw_lines))
+    pilot = data['pilot']
+    pm = pilot['primary_metric']
+    rules = pilot['stop_rules']
+    assert not non_comment_q, f'Còn dấu ? ở dòng: {non_comment_q}'
+    assert len(rules) >= 3, 'Cần ít nhất 3 luật dừng'
+    for idx, rule in enumerate(rules, 1):
+        for clause in ['NẾU', 'TRONG', 'THÌ', 'KHÔNG THÌ']:
+            assert clause in rule, f'Luật dừng #{idx} thiếu vế {clause}'
+    print(
+        f"  ĐẠT · yaml.safe_load hợp lệ, không còn dấu ?, {len(rules)} luật dừng đủ 4 vế "
+        f"(n_per_arm={pm['n_per_arm']}, DE={pm['design_effect']}, clusters_per_arm={pm['clusters_per_arm']})"
+    )
+
+
 if __name__ == '__main__':
     runs = pd.read_csv('logix_runs.csv')
     reqs = pd.read_csv('logix_requests.csv', keep_default_na=False)
     kiem_tra_dap_an_biet_truoc()
     in_nhiem_vu_a(runs, reqs)
     in_nhiem_vu_b(runs, reqs)
-    # TODO CP4 · Nhiệm vụ D: cỡ mẫu (Đỗ Triệu Đức Phương tiếp quản sau khi đề Phần D được công bố).
-    #   from statsmodels.stats.proportion import proportion_effectsize
-    #   from statsmodels.stats.power import NormalIndPower
+    in_nhiem_vu_d(reqs)
+    in_nhiem_vu_e1(reqs)
+    kiem_tra_pilot_plan()
