@@ -46,11 +46,22 @@ Mỗi thành viên đồng thời tạo một báo cáo riêng trong `report/tea
 
 ### Đóng góp cụ thể
 
-- *(Cập nhật sau khi hoàn thành từng checkpoint)*
+- **Thiết lập repo & Chặng 1 (A–B · Người viết code):**
+  - Tạo fork repo nhóm `K5-L3B-DAY13-HelloWorld-LaunchEconomics`, lập bảng phân công 4 vai (đổi người viết code sau giải lao) trong `TEAM.md` và khởi tạo 4 file báo cáo cá nhân theo đúng mẫu.
+  - Viết hoàn chỉnh code Nhiệm vụ A (A1–A4) và B (B1–B4) trong `src/lab13.py`: đạt đủ 3 phép thử A1 (`1,20 · 1,25 · 1,25`), tính đầy đủ bảng A2 (`4.373.585 đ`, `978` việc thành công, CPS `4.472 đ` `simulated`, gấp `16,3×` hoá đơn `274,7 đ`), A3 theo 4 loại yêu cầu + tỉ lệ `ok` theo `attempt`, A4 chi phí cố định (`4.599 đ` và `5.784 đ` `simulated`), B1–B4 (độ nhạy, cộng tuyến tính, chi phí cả hệ thống rẻ nhất ở giới hạn 2 lần `6.901.220 đ`, xem lại 100% `11.743 đ` / `12.415 đ` `simulated`).
+- **Chặng 2 (D–E · Kiểm số & soát kỹ thuật):**
+  - Chạy kiểm chứng chéo toàn bộ `src/lab13.py` (gồm code D1, E1 và kiểm tra `pilot_plan.yaml` do Đỗ Triệu Đức Phương bổ sung) trên máy của nhóm trưởng: xác nhận chạy trọn vẹn từ đầu tới cuối, không lỗi.
+  - Kiểm số bằng tay toàn bộ 5 câu D1 (`1.251`, `DE=2,48 / 3.103 / 84 người`, trần `1.000`, trần `300`, MDE `+6 điểm`: `859` mẫu hiệu dụng với `m >= 299`, `DE = 6,96`, power `0,64` ở mức `+5 điểm`), tỉ lệ mở lại (`4,25%` toàn mẫu, `3,97%` phạm vi pilot) và 3 chỉ số E1 (`82,83%`, `27,12%`, `4,25%`).
+  - Rà soát kỹ thuật toàn bộ `report/team/*`: bổ sung nhãn `simulated` còn thiếu cho `quoc_te`/`doi_tac` trong trường `scope` của `report/team/pilot_plan.yaml`; xác nhận `yaml.safe_load` hợp lệ, không còn dấu `?` ngoài chú thích, không có từ cấm trong `report/team/`, không sửa `src/logix_runs.csv`, `src/logix_requests.csv` và `src/lab13_starter.py`; phát hiện và báo sửa lỗi `0,37×` → `0,49×` (cả hệ thống) ở Mục 3 của `ho_so_launch_v0.md`.
+  - Hoàn thiện bảng **E2 · Rủi ro kinh tế** (4 dòng rủi ro có tác động đã tính kèm nhãn `simulated`, dấu hiệu đo được gắn với event có `trace_id`, hành động và 1 vai trò phụ trách) trong `report/team/chi_so.md`.
 
 ### Bằng chứng
 
-- *(Ghi commit hash, file và bảng đã hoàn thành)*
+- `src/lab13.py` (commit `afe922b` cho A–B; chạy chéo xác nhận toàn bộ A–B–D–E1 đạt)
+- `report/team/chi_so.md` (hoàn thiện bảng `E2 · Rủi ro kinh tế`)
+- `report/team/pilot_plan.yaml` (soát kỹ thuật & bổ sung đầy đủ nhãn `simulated` trong `scope`)
+- `TEAM.md` và `report/team/2A202603826_NguyenHoangTrung.md`
+- *(Bổ sung commit hash cuối và `report/team/phieu_cham.md` sau duyệt chéo Gate 2a)*
 
 ## DoTrieuDucPhuong-2A202603843
 

@@ -28,7 +28,7 @@
 
 pilot:
   owner: "Giám đốc vận hành LogiX-VN"
-  scope: "Chỉ áp dụng cho noi_dia (0,22×, 2.696 đ, simulated) và hang_nang (0,69×, 8.221 đ, simulated) trên 12 depot; loại quoc_te (1,88×, 22.515 đ, thành công 27,3%) và doi_tac (0,85×, 10.215 đ, điều khoản riêng)"
+  scope: "Chỉ áp dụng cho noi_dia (0,22×, 2.696 đ, simulated) và hang_nang (0,69×, 8.221 đ, simulated) trên 12 depot; loại quoc_te (1,88×, 22.515 đ, simulated, thành công 27,3%) và doi_tac (0,85×, 10.215 đ, simulated, điều khoản riêng)"
   assignment:
     unit: "staff"                 # chia theo nhân viên (20 can thiệp + 20 đối chứng, phân tầng theo depot)
     control_share: 0.5
