@@ -15,7 +15,7 @@ Người gắn nhãn 1: Nguyễn Duy Mạnh (2A202603806) · Người gắn nhã
 | 5 | Ngầm | Ngầm | Có | Ngầm |
 | 6 | Do người dùng | Do người dùng | Có | Do người dùng |
 | 7 | Hệ thống | Hệ thống | Có | Hệ thống |
-| 8 | Hệ thống | Ngầm | Không | ... |
+| 8 | Hệ thống | Ngầm | Không | Ngầm |
 | 9 | Do người dùng | Do người dùng | Có | Do người dùng |
 | 10 | Ngữ cảnh | Ngữ cảnh | Có | Ngữ cảnh |
 | 11 | Giới hạn hệ thống | Giới hạn hệ thống | Có | Giới hạn hệ thống |
@@ -36,6 +36,7 @@ Người gắn nhãn 1: Nguyễn Duy Mạnh (2A202603806) · Người gắn nhã
 Mỗi ca không trùng một câu. Đồng thuận dưới 80% thì ghi định nghĩa đã viết lại. *(Cập nhật sau khi Mạnh và Bách so nhãn)*:
 
 - Xếp loại theo nguyên nhân gốc gây ra lỗi, tách khỏi phần việc cần sửa sau đó.
+- **Ca 8:** Trợ lý bịa căn cứ ("Điều 7.2") nhưng số tiền hoàn vẫn đúng nên không lộ ra qua khiếu nại hay lỗi API mà chỉ thấy khi kiểm tra nội dung, vì vậy xếp vào **Ngầm**.
 
 ## Bảng khắc phục cho 5 ca, mỗi loại một ca
 
@@ -45,6 +46,6 @@ Cách phát hiện phải đo được (event, ngưỡng, tần suất). Ngườ
 | --: | --- | --- | --- | --- |
 | 9 | Do người dùng | Event `input_validation_failed` (kèm `trace_id`, mã lỗi định dạng mã đơn); cảnh báo khi vượt 2% tổng yêu cầu/ngày | Nhận diện mã đơn sàn TMĐT để tự tra sang mã vận đơn LogiX; nếu không tra được thì hiện hướng dẫn kèm ảnh vị trí mã vận đơn | PM trợ lý hoàn phí |
 | 7 | Hệ thống | Job đối soát mỗi giờ giữa tin nhắn "đã hoàn tiền" và bản ghi `refund_ledger_write` (`ket_qua == ok`) cùng `trace_id`; ngưỡng 0 ca lệch (báo ngay khi ≥ 1 ca) | Chỉ gửi thông báo "đã hoàn tiền thành công" sau khi sổ cái trả `ok` kèm `idempotency_key`; nếu API 503 sau tối đa 2 lần thử lại thì báo "đang xử lý" và tạo event `handoff_to_staff` | Kỹ sư trưởng agent |
-| ... | Ngữ cảnh | *(Vũ Xuân Bách điền)* | *(Vũ Xuân Bách điền)* | ... |
-| ... | Giới hạn hệ thống | *(Vũ Xuân Bách điền)* | *(Vũ Xuân Bách điền)* | ... |
+| 3 | Ngữ cảnh | Tỉ lệ ticket hỏi "chưa nhận được tiền" trên các đơn đã hoàn về ví LogiX (`refund_wallet_success`) vượt 5%/tuần | Cập nhật thông báo nêu rõ "Đã hoàn về ví LogiX trong 5 phút" kèm hướng dẫn rút về ngân hàng | Quản lý sản phẩm |
+| 4 | Giới hạn hệ thống | Event `handoff_foreign_carrier` (có `trace_id`) vượt 10 ca/ngày | Nhận diện mã hãng vận chuyển nước ngoài ngay đầu luồng để chuyển thẳng nhân viên kèm tóm tắt | Trưởng nhóm CSKH |
 | 17 | Ngầm | Event `audit_sample_checked` kiểm tra mẫu ngẫu nhiên 100 đơn/tuần so với bảng giá hiện hành; cảnh báo khi hơn 1% số đơn lệch tiền | Xoá bộ nhớ đệm ngay khi có bảng giá mới và lưu `pricing_version` vào mọi `trace_id` để đối chiếu | Kế toán trưởng |
