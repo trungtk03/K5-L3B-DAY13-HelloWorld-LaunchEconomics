@@ -44,4 +44,8 @@ Công cụ nào, dùng vào việc gì, bạn tự kiểm tra kết quả ra sao
 
 ## 6. Tự đánh giá
 
-- *(Tự nhận xét điểm làm tốt và điểm cần cải thiện)*
+- **Điểm làm tốt:**
+  - kiểm số độc lập trực tiếp trên hai file CSV gốc cho toàn bộ phần A–B và iết code chặng 2 (`co_mau`, D1, E1, kiểm tra hợp lệ `pilot_plan.yaml`) trong `src/lab13.py`.
+- **Điểm cần cải thiện:**
+  - Khi thao tác git từ thư mục con `src/`, cần chú ý đường dẫn (`git add -A` hoặc ra thư mục gốc) để tránh sót file ở `report/team/` và `TEAM.md`.
+  
