@@ -14,7 +14,7 @@ Viết "chỉ số trong đợt chạy thử là …", không viết "trợ lý 
 
 ## Danh sách event
 
-Ít nhất sáu event, mỗi event có `trace_id` để nối với trace của agent. *(Nguyễn Duy Mạnh lập 11 event cho các chỉ số ở bảng E1, đo giờ nhân viên thật thay cột `_simulated` và theo dõi lỗi ở Nhiệm vụ C).*
+Ít nhất sáu event, mỗi event có `trace_id` để nối với trace của agent. *(Nguyễn Duy Mạnh lập 13 event cho các chỉ số ở bảng E1, đo giờ nhân viên thật thay cột `_simulated` và theo dõi toàn bộ 5 ca lỗi ở `bang_loi.md`).*
 
 | Event | Ai tạo | Thuộc tính chính | Thời điểm |
 | --- | --- | --- | --- |
@@ -24,7 +24,9 @@ Viết "chỉ số trong đợt chạy thử là …", không viết "trợ lý 
 | `staff_review_decision` | Giao diện nhân viên | `request_id`, `staff_id`, `quyet_dinh_xem_lai` (`giu`/`sua`/`bo`), `phut_xem_lai_thuc`, `trace_id` | Khi nhân viên bấm giữ, sửa hoặc bỏ gợi ý |
 | `staff_rework_completed` | Hệ thống CSKH | `request_id`, `staff_id`, `phut_lam_lai_thuc`, `ly_do`, `trace_id` | Khi nhân viên làm lại xong ca sai |
 | `refund_ledger_write` | Dịch vụ sổ cái | `request_id`, `idempotency_key`, `so_tien_vnd`, `ket_qua` (`ok`/`loi`), `trace_id` | Khi ghi lệnh hoàn tiền vào sổ cái |
+| `refund_wallet_success` | Dịch vụ ví LogiX | `request_id`, `wallet_tx_id`, `so_tien_vnd`, `trace_id` | Khi tiền hoàn về ví LogiX thành công (đối chiếu Ca 3) |
 | `handoff_to_staff` | Agent | `request_id`, `reason`, `tom_tat`, `trace_id` | Khi trợ lý chuyển yêu cầu sang nhân viên |
+| `handoff_foreign_carrier` | Agent | `request_id`, `carrier_code`, `tom_tat`, `trace_id` | Khi nhận diện hãng vận chuyển nước ngoài và chuyển nhân viên (đối chiếu Ca 4) |
 | `input_validation_failed` | App khách / Agent | `request_id`, `field`, `error_code`, `trace_id` | Khi đầu vào khách nhập sai định dạng (mã vận đơn, STK) |
 | `ticket_closed` | Hệ thống ticket | `request_id`, `closed_at`, `dong_trong_24h`, `trace_id` | Khi yêu cầu hoàn phí được đóng |
 | `ticket_reopened` | App khách / CSKH | `request_id`, `reopened_at`, `reason`, `mo_lai_trong_7_ngay`, `trace_id` | Khi khách mở lại yêu cầu sau khi đã đóng |

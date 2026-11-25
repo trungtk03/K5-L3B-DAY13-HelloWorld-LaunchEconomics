@@ -13,7 +13,7 @@
 | --: | ------ | ---- | ----- | ------ | ------- |
 |   1 | Nguyễn Hoàng Trung | 2A202603826 | *(điền email)* | trungtk03 | Nhóm trưởng (chủ fork) · Người viết code (chặng 1: A–B) → Kiểm số & soát kỹ thuật (chặng 2: D–E) |
 |   2 | Đỗ Triệu Đức Phương | 2A202603843 | *(điền email)* | *(điền GitHub)* | Người kiểm số (chặng 1: A–B) → Người viết code (chặng 2: D–E) |
-|   3 | Nguyễn Duy Mạnh | 2A202603806 | *(điền email)* | *(điền GitHub)* | Người gắn nhãn 1 · Theo dõi điều kiện "Xong khi" (QA) |
+|   3 | Nguyễn Duy Mạnh | 2A202603806 | 26ai.manhnd9@vinuni.edu.vn | hnamyud | Người gắn nhãn 1 · Theo dõi điều kiện "Xong khi" (QA) |
 |   4 | Vũ Xuân Bách | 2A202603803 | *(điền email)* | *(điền GitHub)* | Người gắn nhãn 2 · Người giữ hồ sơ (`ho_so_launch_v0.md`) |
 
 Bốn vai của lab:
@@ -103,16 +103,17 @@ Mỗi thành viên đồng thời tạo một báo cáo riêng trong `report/tea
 ### Đóng góp cụ thể
 
 - Phần A và B (QA): chạy kiểm tra `src/lab13.py` và soát `report/team/bang_chi_phi.md`. Ba phép thử A1 đạt (`1,20`, `1,25`, `1,25`), đủ 9 dòng A2, 4 dòng A3, bảng A4, 9 dòng B1 cùng B2, B3, B4. Toàn bộ số tính từ cột `_simulated` đều có nhãn `simulated`, câu trả lời tối đa 3 dòng có số, không vi phạm quy tắc 5 trong `README.md` và không ghi "cả đội".
-- Phần C (Người gắn nhãn 1): gắn nhãn độc lập 20/20 ca lỗi theo 5 loại Google PAIR (`Do người dùng`: 1, 6, 9, 14; `Hệ thống`: 2, 7, 8, 15, 20; `Ngữ cảnh`: 3, 10, 16, 18; `Giới hạn hệ thống`: 4, 11, 13, 19; `Ngầm`: 5, 12, 17) trong `report/team/bang_loi.md`, để trống cột của Bách để đối chiếu sau. Điền 3 dòng khắc phục (Ca 9: Do người dùng, Ca 7: Hệ thống, Ca 17: Ngầm) có event phát hiện, ngưỡng, tần suất và một vai trò phụ trách.
+- Phần C (Người gắn nhãn 1): gắn nhãn độc lập 20/20 ca lỗi theo 5 loại Google PAIR (`Do người dùng`: 1, 6, 9, 14; `Hệ thống`: 2, 7, 8, 15, 20; `Ngữ cảnh`: 3, 10, 16, 18; `Giới hạn hệ thống`: 4, 11, 13, 19; `Ngầm`: 5, 12, 17) trong `report/team/bang_loi.md`, đối chiếu cùng Bách đạt đồng thuận `19/20 = 95%`. Điền 3 dòng khắc phục (Ca 9: Do người dùng, Ca 7: Hệ thống, Ca 17: Ngầm) có event phát hiện, ngưỡng, tần suất và một vai trò phụ trách.
 - Phần D: viết phần D2 (5 câu kiểm tra "tách được tác động"), nêu đánh đổi khi chia theo nhân viên 20 + 20 và nâng MDE từ 5 lên 6 điểm (power còn khoảng 0,64 ở mức 5 điểm), kiểm tra tỉ lệ `mo_lai_trong_7_ngay` hiện tại (`4,25%` toàn mẫu, `3,97%` phạm vi pilot), rồi điền `owner`, `scope`, `assignment`, `identifiability`, 3 `stop_rules` đủ 4 vế `NẾU`, `TRONG`, `THÌ`, `KHÔNG THÌ`, `interim_looks`, `rollback`, `decision_date` và `simulated_inputs` trong `report/team/pilot_plan.yaml`.
-- Phần E: lập 11 event có `trace_id` và viết mục kiểm tra chéo cho mọi chỉ số E1 (chính, dùng, an toàn, chỉ số tự đề xuất, cùng giờ nhân viên thật thay `_simulated`) trong `report/team/chi_so.md`.
+- Phần E: lập danh sách event có `trace_id` (đồng bộ cả các event phát hiện lỗi từ `bang_loi.md`) và viết mục kiểm tra chéo cho mọi chỉ số E1 (chính, dùng, an toàn, chỉ số tự đề xuất, cùng giờ nhân viên thật thay `_simulated`) trong `report/team/chi_so.md`.
 - Duyệt chéo Gate 2a (`report/team/phieu_cham.md`): cập nhật trực tiếp lúc 17:00 khi nhận hồ sơ của nhóm bạn.
 
 ### Bằng chứng
 
-- `report/team/bang_loi.md` (cột Nhãn người 1 đủ 20 ca độc lập và 3 dòng khắc phục Ca 9, 7, 17)
+- Commit `0f334ae` trên nhánh `main`
+- `report/team/bang_loi.md` (cột Nhãn người 1 đủ 20 ca độc lập, đồng thuận `19/20 = 95%` và 3 dòng khắc phục Ca 9, 7, 17)
 - `report/team/pilot_plan.yaml` (phần D2, đánh đổi, tỉ lệ mở lại `4,25%` và `3,97%`, `identifiability`, 3 `stop_rules`, `rollback`, `simulated_inputs`)
-- `report/team/chi_so.md` (11 event có `trace_id` và kiểm tra chéo chỉ số với event)
+- `report/team/chi_so.md` (danh sách 13 event có `trace_id` và kiểm tra chéo chỉ số với event)
 - `report/team/2A202603806_NguyenDuyManh.md` (báo cáo cá nhân)
 
 ## VuXuanBach-2A202603803
