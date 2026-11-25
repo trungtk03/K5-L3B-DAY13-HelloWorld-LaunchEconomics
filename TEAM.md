@@ -5,7 +5,7 @@
 - Tên nhóm: HelloWorld
 - Lớp: L3B
 - Repo nhóm: `K5-L3B-DAY13-HelloWorld-LaunchEconomics` (xem [SUBMISSION.md](SUBMISSION.md))
-- URL repo, nhánh nộp, commit chốt: https://github.com/trungtk03/K5-L3B-DAY13-HelloWorld-LaunchEconomics · nhánh `main` · commit chốt: *(cập nhật hash commit cuối sau khi push)*
+- URL repo, nhánh nộp, commit chốt: https://github.com/trungtk03/K5-L3B-DAY13-HelloWorld-LaunchEconomics · nhánh `main` · commit chốt nội dung: `e81dec6` (cập nhật trạng thái chốt bài trên nhánh `main`)
 
 ## Thành viên
 
