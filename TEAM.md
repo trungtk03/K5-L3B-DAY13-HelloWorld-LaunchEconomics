@@ -5,16 +5,16 @@
 - Tên nhóm: HelloWorld
 - Lớp: L3B
 - Repo nhóm: `K5-L3B-DAY13-HelloWorld-LaunchEconomics` (xem [SUBMISSION.md](SUBMISSION.md))
-- URL repo, nhánh nộp, commit chốt: https://github.com/trungtk03/K5-L3B-DAY13-HelloWorld-LaunchEconomics · nhánh `main` · commit chốt: *(cập nhật trước khi nộp)*
+- URL repo, nhánh nộp, commit chốt: https://github.com/trungtk03/K5-L3B-DAY13-HelloWorld-LaunchEconomics · nhánh `main` · commit chốt: *(cập nhật hash commit cuối sau khi push)*
 
 ## Thành viên
 
 | STT | Họ tên | MSSV | Email | GitHub | Vai trò |
 | --: | ------ | ---- | ----- | ------ | ------- |
-|   1 | Nguyễn Hoàng Trung | 2A202603826 | *(điền email)* | trungtk03 | Nhóm trưởng (chủ fork) · Người viết code (chặng 1: A–B) → Kiểm số & soát kỹ thuật (chặng 2: D–E) |
-|   2 | Đỗ Triệu Đức Phương | 2A202603843 | *(điền email)* | *(điền GitHub)* | Người kiểm số (chặng 1: A–B) → Người viết code (chặng 2: D–E) |
+|   1 | Nguyễn Hoàng Trung | 2A202603826 | 26ai.trungnh@vinuni.edu.vn | trungtk03 | Nhóm trưởng (chủ fork) · Người viết code (chặng 1: A–B) → Kiểm số & soát kỹ thuật (chặng 2: D–E) |
+|   2 | Đỗ Triệu Đức Phương | 2A202603843 | 2023600426@st.haui.edu.vn | ducphuong2005 | Người kiểm số (chặng 1: A–B) → Người viết code (chặng 2: D–E) |
 |   3 | Nguyễn Duy Mạnh | 2A202603806 | 26ai.manhnd9@vinuni.edu.vn | hnamyud | Người gắn nhãn 1 · Theo dõi điều kiện "Xong khi" (QA) |
-|   4 | Vũ Xuân Bách | 2A202603803 | *(điền email)* | *(điền GitHub)* | Người gắn nhãn 2 · Người giữ hồ sơ (`ho_so_launch_v0.md`) |
+|   4 | Vũ Xuân Bách | 2A202603803 | bachvx.1709@gmail.com | bachvx1709 | Người gắn nhãn 2 · Người giữ hồ sơ (`ho_so_launch_v0.md`) |
 
 Bốn vai của lab:
 
@@ -58,10 +58,9 @@ Mỗi thành viên đồng thời tạo một báo cáo riêng trong `report/tea
 ### Bằng chứng
 
 - `src/lab13.py` (commit `afe922b` cho A–B; chạy chéo xác nhận toàn bộ A–B–D–E1 đạt)
-- `report/team/chi_so.md` (hoàn thiện bảng `E2 · Rủi ro kinh tế`)
-- `report/team/pilot_plan.yaml` (soát kỹ thuật & bổ sung đầy đủ nhãn `simulated` trong `scope`)
-- `TEAM.md` và `report/team/2A202603826_NguyenHoangTrung.md`
-- *(Bổ sung commit hash cuối và `report/team/phieu_cham.md` sau duyệt chéo Gate 2a)*
+- `report/team/chi_so.md` (commit `23a0087`: hoàn thiện bảng `E2 · Rủi ro kinh tế`)
+- `report/team/pilot_plan.yaml` (soát kỹ thuật, bổ sung nhãn `simulated` và đồng bộ mốc `≥ 10 ngày` cho phạm vi `81,8%`)
+- `report/team/phieu_cham.md` (commit `6ae3b79` và bản chốt chấm Nhóm 08 đạt `30/30`), `report/team/group_report.md`, `TEAM.md` và `report/team/2A202603826_NguyenHoangTrung.md`
 
 ## DoTrieuDucPhuong-2A202603843
 
@@ -85,11 +84,11 @@ Mỗi thành viên đồng thời tạo một báo cáo riêng trong `report/tea
 
 ### Bằng chứng
 
-- `report/team/bang_chi_phi.md` (hoàn chỉnh A1, A2, A3, A4, B1, B2, B3, B4)
-- `src/lab13.py` (hoàn thiện `co_mau`, `in_nhiem_vu_d`, `in_nhiem_vu_e1`, `kiem_tra_pilot_plan`)
+- `report/team/bang_chi_phi.md` (commit `d7c79a6`: hoàn chỉnh A1, A2, A3, A4, B1, B2, B3, B4)
+- `src/lab13.py` (commit `d445e73`: hoàn thiện `co_mau`, `in_nhiem_vu_d`, `in_nhiem_vu_e1`, `kiem_tra_pilot_plan`)
 - `report/team/pilot_plan.yaml` (điền đủ D1, chốt `n_per_arm=859`, `design_effect=6.96`, `clusters_per_arm=20`, không còn `?`, hợp lệ `yaml.safe_load`)
-- `report/team/chi_so.md` (hoàn thiện bảng E1: 3 chỉ số tính thử + 2 chỉ số tự đề xuất)
-- *(Bổ sung commit hash cuối và `report/team/phieu_cham.md` sau duyệt chéo Gate 2a)*
+- `report/team/chi_so.md` (hoàn thiện bảng E1: 3 chỉ số tính thử + 2 chỉ số tự đề xuất) và tham gia duyệt chéo `report/team/phieu_cham.md`
+- `report/team/2A202603843_DoTrieuDucPhuong.md` (commit `e373d71`)
 
 ## NguyenDuyManh-2A202603806
 
@@ -127,8 +126,12 @@ Mỗi thành viên đồng thời tạo một báo cáo riêng trong `report/tea
 
 ### Đóng góp cụ thể
 
-- *(Cập nhật sau khi hoàn thành từng checkpoint)*
+- **Phần C (Người gắn nhãn 2):** Gắn nhãn độc lập 20/20 ca lỗi theo 5 loại Google PAIR trong `report/team/bang_loi.md` (không trao đổi trước khi so nhãn), đối chiếu cùng Nguyễn Duy Mạnh đạt tỉ lệ đồng thuận `19/20 = 95%`, thống nhất quy tắc phân biệt Ca 8 và hoàn thiện 2 ca khắc phục còn lại (Ca 3: Ngữ cảnh, Ca 4: Giới hạn hệ thống) có ngưỡng đo được và một vai trò phụ trách.
+- **Xuyên suốt A–E (Người giữ hồ sơ):** Cập nhật liên tục `report/team/ho_so_launch_v0.md` từ CP1–CP3 đến bản chốt Gate 2a (đủ 7 mục trong 1 trang, đúng nhãn trạng thái `Giả lập` / `Xong, có bằng chứng`, mỗi mục gắn một vai trò phụ trách, chốt đề xuất **Go có điều kiện** kèm 3 điều kiện cụ thể và thời hạn kiểm tra).
+- **Duyệt chéo Gate 2a:** Tham gia đối chiếu hồ sơ Nhóm 08 và hoàn thiện tổng hợp nhóm.
 
 ### Bằng chứng
 
-- *(Ghi commit hash, file và bảng đã hoàn thành)*
+- Commits `d6c9841`, `f3248c1` (`report/team/bang_loi.md`: cột Nhãn người 2 độc lập 20/20 ca, đồng thuận `95%`, 2 dòng khắc phục Ca 3 và Ca 4)
+- Commits `3b50c97`, `ab31235` (`report/team/ho_so_launch_v0.md`: hồ sơ launch v0 đủ 7 mục và đề xuất Go có điều kiện)
+- `report/team/2A202603803_VuXuanBach.md` (báo cáo cá nhân)
